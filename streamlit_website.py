@@ -5,7 +5,7 @@ import os
 
 # Function to start Django server
 def start_django():
-    django_project_path = "path_to_your_django_project"  # Update this to your Django project path
+    django_project_path = "."  # Update this to your Django project path
     os.chdir(django_project_path)
     
     # Run Django server
