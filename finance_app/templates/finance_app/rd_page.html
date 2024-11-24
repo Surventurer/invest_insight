@@ -1,0 +1,29 @@
+{% extends 'finance_app/base.html' %}
+
+{% block content %}
+<h1>Recurring Deposit (RD)</h1>
+<p>
+    A Recurring Deposit (RD) is an investment option where you deposit a fixed amount every month
+    for a specific tenure. It helps you accumulate wealth through compounding interest.
+</p>
+
+<h2>RD Calculator</h2>
+<form method="POST">
+    {% csrf_token %}
+    <label>Monthly Investment (₹):</label>
+    <input type="number" name="monthly_investment" required><br>
+
+    <label>Annual Interest Rate (%):</label>
+    <input type="number" name="annual_interest_rate" step="0.01" required><br>
+
+    <label>Tenure (Years):</label>
+    <input type="number" name="tenure" required><br>
+
+    <button type="submit">Calculate</button>
+</form>
+
+{% if maturity_value %}
+<h3>Results:</h3>
+<p><strong>Maturity Value:</strong> ₹{{ maturity_value }}</p>
+{% endif %}
+{% endblock %}

@@ -1,0 +1,29 @@
+{% extends 'finance_app/base.html' %}
+
+{% block content %}
+<h1>Fixed Deposit (FD)</h1>
+<p>
+    A Fixed Deposit (FD) is a safe and secure investment option where you deposit a lump sum
+    amount for a fixed tenure at a guaranteed interest rate.
+</p>
+
+<h2>FD Calculator</h2>
+<form method="POST">
+    {% csrf_token %}
+    <label>Principal Amount (₹):</label>
+    <input type="number" name="principal_amount" required><br>
+
+    <label>Annual Interest Rate (%):</label>
+    <input type="number" name="annual_interest_rate" step="0.01" required><br>
+
+    <label>Tenure (Years):</label>
+    <input type="number" name="tenure" required><br>
+
+    <button type="submit">Calculate</button>
+</form>
+
+{% if maturity_value %}
+<h3>Results:</h3>
+<p><strong>Maturity Value:</strong> ₹{{ maturity_value }}</p>
+{% endif %}
+{% endblock %}

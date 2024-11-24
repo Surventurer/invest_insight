@@ -1,0 +1,169 @@
+{% extends 'finance_app/base.html' %}
+
+{% block content %}
+<h1>Fixed Deposits (FDs) and Recurring Deposits (RDs): Safe Investment Options for Stable Returns</h1>
+<p>
+    In India, Fixed Deposits (FDs) and Recurring Deposits (RDs) are two of the most popular and reliable investment options...
+</p>
+
+<h2>What are Fixed Deposits (FDs)?</h2>
+<p>
+    A Fixed Deposit (FD) is a financial instrument offered by banks and financial institutions where an individual deposits a lump sum amount of money for a fixed tenure at an agreed interest rate. The investor cannot withdraw the money before the maturity date without incurring a penalty, but they benefit from guaranteed returns at the predetermined interest rate.
+</p>
+
+<h3>Key Features of Fixed Deposits:</h3>
+<ul>
+    <li><strong>Safety:</strong> FDs are considered one of the safest investment options, as they are backed by the bank or financial institution, and the principal amount is not subject to market fluctuations.</li>
+    <li><strong>Fixed Returns:</strong> FDs offer fixed interest rates that are predetermined at the time of investment, ensuring stability in returns.</li>
+    <li><strong>Tenure:</strong> The tenure of FDs can range from a few months to several years, allowing investors to choose according to their financial goals.</li>
+    <li><strong>Interest Payout Options:</strong> Investors can choose between monthly, quarterly, or annual interest payouts, or they can opt for reinvestment of the interest earned.</li>
+</ul>
+
+<h3>Benefits of Fixed Deposits:</h3>
+<ul>
+    <li><strong>Capital Protection:</strong> The principal amount invested in an FD is secure and guaranteed.</li>
+    <li><strong>Attractive Interest Rates:</strong> FDs typically offer higher interest rates compared to savings accounts, making them an attractive option for risk-averse investors.</li>
+    <li><strong>Tax Benefits:</strong> In India, FDs come with tax-saving options under Section 80C of the Income Tax Act, allowing deductions on investments of up to ₹1.5 lakh in certain cases.</li>
+    <li><strong>Loan Against FD:</strong> FDs can be pledged as collateral to secure loans, offering liquidity in emergencies without needing to break the FD.</li>
+</ul>
+
+<h2>What are Recurring Deposits (RDs)?</h2>
+<p>
+    A Recurring Deposit (RD) is similar to an FD but involves making periodic deposits instead of a lump sum. In an RD, an investor deposits a fixed amount of money every month for a pre-determined period, after which the total investment, along with the interest earned, is paid out.
+</p>
+
+<h3>Key Features of Recurring Deposits:</h3>
+<ul>
+    <li><strong>Periodic Contributions:</strong> RDs require you to invest a fixed sum of money every month, making them ideal for individuals who have a regular income and wish to save consistently.</li>
+    <li><strong>Fixed Interest Rates:</strong> Like FDs, RDs offer fixed interest rates, which means the returns are predictable over the deposit's tenure.</li>
+    <li><strong>Flexible Tenure:</strong> The tenure for an RD generally ranges from 6 months to 10 years, allowing investors to choose a duration that aligns with their financial goals.</li>
+</ul>
+
+<h3>Benefits of Recurring Deposits:</h3>
+<ul>
+    <li><strong>Easy to Start:</strong> RDs are easy to open and do not require a large lump sum amount. They can be started with as little as ₹500 per month.</li>
+    <li><strong>Disciplined Saving:</strong> RDs encourage regular saving habits and can help build a corpus over time.</li>
+    <li><strong>Risk-Free Investment:</strong> Similar to FDs, RDs are low-risk, as the principal and interest are guaranteed by the bank.</li>
+    <li><strong>Liquidity with Penalty:</strong> RDs also offer liquidity, although breaking the RD before the maturity period incurs a penalty.</li>
+</ul>
+
+<h2>FDs vs. RDs: Which One Should You Choose?</h2>
+<table border="1" style="border-collapse: collapse; width: 100%;">
+    <tr>
+        <th>Feature</th>
+        <th>Fixed Deposit (FD)</th>
+        <th>Recurring Deposit (RD)</th>
+    </tr>
+    <tr>
+        <td>Investment Amount</td>
+        <td>Lump sum amount</td>
+        <td>Fixed monthly contributions</td>
+    </tr>
+    <tr>
+        <td>Returns</td>
+        <td>Fixed interest on lump sum</td>
+        <td>Fixed interest on monthly deposits</td>
+    </tr>
+    <tr>
+        <td>Investment Flexibility</td>
+        <td>No flexibility in deposit amount</td>
+        <td>Flexibility in monthly contribution amount</td>
+    </tr>
+    <tr>
+        <td>Ideal for</td>
+        <td>Individuals with a lump sum amount to invest</td>
+        <td>Individuals with a fixed monthly income</td>
+    </tr>
+    <tr>
+        <td>Liquidity</td>
+        <td>Penalty for early withdrawal</td>
+        <td>Penalty for early withdrawal</td>
+    </tr>
+    <tr>
+        <td>Minimum Tenure</td>
+        <td>Generally 7 days to 10 years</td>
+        <td>Typically 6 months to 10 years</td>
+    </tr>
+</table>
+
+
+<!-- RD Calculator -->
+<h2>RD Calculator</h2>
+<p>Recurring Deposits (RDs) help build savings over time with guaranteed returns. Calculate the maturity value of your RD:</p>
+<form id="rd-form" method="POST">
+    {% csrf_token %}
+    <label>Monthly Investment (₹):</label>
+    <input type="number" name="monthly_investment" required><br>
+
+    <label>Annual Interest Rate (%):</label>
+    <input type="number" name="annual_interest_rate" step="0.01" required><br>
+
+    <label>Tenure (Years):</label>
+    <input type="number" name="tenure" required><br>
+
+    <button type="submit" name="rd_submit">Calculate RD</button>
+</form>
+<p id="rd-result"></p>
+
+<!-- FD Calculator -->
+<h2>FD Calculator</h2>
+<p>Fixed Deposits (FDs) are one of the safest investment options. Use this calculator to estimate your FD returns:</p>
+<form id="fd-form" method="POST">
+    {% csrf_token %}
+    <label>Principal Amount (₹):</label>
+    <input type="number" name="principal_amount" required><br>
+
+    <label>Annual Interest Rate (%):</label>
+    <input type="number" name="annual_interest_rate" step="0.01" required><br>
+
+    <label>Tenure (Years):</label>
+    <input type="number" name="tenure" required><br>
+
+    <button type="submit" name="fd_submit">Calculate FD</button>
+</form>
+<p id="fd-result"></p>
+
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+    // Handle RD Calculator
+    const rdForm = document.getElementById("rd-form");
+    rdForm.addEventListener("submit", function (e) {
+        e.preventDefault(); // Prevent default form submission
+
+        const formData = new FormData(rdForm);
+        fetch("{% url 'calculate_rd' %}", {
+            method: "POST",
+            body: formData,
+            headers: {
+                "X-Requested-With": "XMLHttpRequest"
+            }
+        })
+        .then(response => response.json())
+        .then(data => {
+            document.getElementById("rd-result").innerHTML = `<strong>RD Maturity Value:</strong> ₹${data.rd_result}`;
+        })
+        .catch(error => console.error("Error:", error));
+    });
+
+    // Handle FD Calculator
+    const fdForm = document.getElementById("fd-form");
+    fdForm.addEventListener("submit", function (e) {
+        e.preventDefault(); // Prevent default form submission
+
+        const formData = new FormData(fdForm);
+        fetch("{% url 'calculate_fd' %}", {
+            method: "POST",
+            body: formData,
+            headers: {
+                "X-Requested-With": "XMLHttpRequest"
+            }
+        })
+        .then(response => response.json())
+        .then(data => {
+            document.getElementById("fd-result").innerHTML = `<strong>FD Maturity Value:</strong> ₹${data.fd_result}`;
+        })
+        .catch(error => console.error("Error:", error));
+    });
+});
+</script>
+{% endblock %}

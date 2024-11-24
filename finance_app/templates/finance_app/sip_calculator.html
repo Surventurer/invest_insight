@@ -1,0 +1,49 @@
+{% extends 'finance_app/base.html' %}
+
+{% block content %}
+<h1>Mutual Funds and Investment Calculators</h1>
+<p>
+    Mutual funds are an excellent way to diversify your investments, pooling money from multiple investors and allocating it across stocks, bonds, or other securities.  
+    To help you plan your investments better, we offer easy-to-use calculators for SIP, RD, and FD.
+</p>
+
+<h2>Equity Investment in India: Why It’s a Smart Choice</h2>
+<p>
+    Investing in equity offers a compelling avenue for wealth creation and financial growth. In India, where the economy is poised for long-term expansion, equity investments can be a powerful tool to achieve your financial goals. Here's why equity investment should be an integral part of your portfolio:
+</p>
+
+<ul>
+    <li><strong>Higher Potential for Returns:</strong> Equities have historically delivered higher returns compared to traditional investment options like fixed deposits or bonds. With India's rapid industrialization and global presence, equities provide a way to participate in this growth story.</li>
+    <li><strong>Beating Inflation:</strong> Inflation erodes the value of money over time. Equities act as a shield against inflation by generating real, inflation-adjusted growth in your wealth.</li>
+    <li><strong>Ownership in Businesses:</strong> Investing in equities means buying ownership in companies, participating in profits, and potentially earning dividends.</li>
+    <li><strong>Diversification Opportunities:</strong> The Indian equity market offers various sectors to invest in, reducing risk and maximizing returns.</li>
+    <li><strong>Tax Benefits:</strong> Equity investments come with favorable tax treatments, such as LTCG at 10% (above ₹1 lakh) and ELSS benefits under Section 80C.</li>
+    <li><strong>The Power of Compounding:</strong> Long-term equity investments leverage compounding, multiplying your returns over time.</li>
+    <li><strong>Growing Market Participation:</strong> Increased access to technology and financial literacy has made equity investing more accessible in India.</li>
+    <li><strong>Economic Growth Tailwind:</strong> India’s fast-growing economy offers numerous opportunities for equity investors to benefit from reforms and innovation.</li>
+</ul>
+
+<p><strong>Why Now is the Right Time to Invest:</strong></p>
+<p>
+    Government reforms, start-up ecosystems, and foreign investments are strengthening market dynamics. Open a Demat account, begin with blue-chip stocks, or start SIPs to systematically invest and grow wealth.
+</p>
+
+<h2>SIP(Systematic Investment Plan) Calculator</h2>
+<p>Calculate your SIP maturity value and plan consistent investments for wealth creation:</p>
+<form method="POST">
+    {% csrf_token %}
+    <label>Monthly Investment (₹):</label>
+    <input type="number" name="monthly_investment" required><br>
+
+    <label>Annual Rate of Return (%):</label>
+    <input type="number" name="annual_rate" step="0.01" required><br>
+
+    <label>Duration (Years):</label>
+    <input type="number" name="years" required><br>
+
+    <button type="submit" name="sip_submit">Calculate SIP</button>
+</form>
+{% if sip_result %}
+<p><strong>SIP Maturity Value:</strong> ₹{{ sip_result }}</p>
+{% endif %}
+{% endblock %}
