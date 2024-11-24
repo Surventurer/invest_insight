@@ -1,17 +1,23 @@
-import streamlit as st
-import webbrowser
 import subprocess
 import os
+import streamlit as st
 
-# Function to start Django server
+# Path to your Django project directory
+django_project_path = "path_to_your_django_project"  # Update this path
+
+# Function to start the Django server
 def start_django():
-    django_project_path = "."  # Update this to your Django project path
     os.chdir(django_project_path)
-    
-    # Run Django server
-    subprocess.Popen(["python", "manage.py", "runserver"], stdout=subprocess.PIPE, stderr=subprocess.PIPE)
+    st.write("Starting Django server...")
+    # Start Django server
+    process = subprocess.Popen(["python", "manage.py", "runserver", "0.0.0.0:8501"])
+    return process
 
-# Redirect to Django app
-st.title("Redirecting to Django Application...")
-start_django()
-webbrowser.open("http://127.0.0.1:8000")
+# Streamlit UI
+st.title("Launching Django Application...")
+st.write("Please wait while the Django server starts.")
+
+# Start Django
+process = start_django()
+
+st.success("Django server is running! Access your app directly at this Streamlit app URL.")
