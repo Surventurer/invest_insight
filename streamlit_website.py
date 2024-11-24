@@ -3,7 +3,7 @@ import os
 import streamlit as st
 
 # Path to your Django project directory
-django_project_path = "path_to_your_django_project"  # Update this path
+django_project_path = "."  # Update this path
 
 # Function to start the Django server
 def start_django():
