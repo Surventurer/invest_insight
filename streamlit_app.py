@@ -3,12 +3,12 @@ import os
 import streamlit as st
 
 # Path to your Django project directory
-django_project_path = "."  # Update this path
+# django_project_path = "."  # Update this path
 
 # Function to start the Django server
 def start_django():
-    os.chdir(django_project_path)
-    st.write("Starting Django server...")
+    # os.chdir(django_project_path)
+    # st.write("Starting Django server...")
     # Start Django server
     process = subprocess.Popen(["python", "manage.py", "runserver", "0.0.0.0:8501"])
     return process
