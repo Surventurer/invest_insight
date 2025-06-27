@@ -1,6 +1,6 @@
 # Invest Insight 💰📊
 
-Invest Insight is a comprehensive financial planning application designed to help users make informed investment decisions. With tools like SIP calculators, FD/RD planners, and real estate insights, this app empowers users to achieve their financial goals.
+Invest Insight is a comprehensive financial planning application designed to help users make general awareness investment decisions. With tools like SIP calculators, FD/RD planners, and real estate insights, this app empowers users to achieve their financial goals.
 
 ---
 
@@ -66,13 +66,13 @@ manage.py               # Django management script
 ## Screenshots 📸
 
 ### Home Page
-![Home Page](static/home.png)
+![Home Page](finance_app\static\home.png)
 
 ### SIP Calculator
-![SIP Calculator](static/sip_calculator.png)
+![SIP Calculator](finance_app\static\sip_calculator.png)
 
 ### RD/FD Calculator
-![RD/FD Calculator](static/rd_fd_calculator.png)
+![RD/FD Calculator](\finance_app\static\rd_fd_calculator.png)
 
 ---
 
