@@ -9,7 +9,7 @@ Invest Insight is a comprehensive financial planning application designed to hel
 - **SIP Calculator**: Plan your Systematic Investment Plans with ease.
 - **FD & RD Calculators**: Calculate returns on Fixed Deposits and Recurring Deposits.
 - **Real Estate Insights**: Analyze real estate investment opportunities.
-- **Commodities Tracker**: Stay updated on commodity prices.
+- **Commodities Tracker**: Learn about investing in commodities like gold, silver, and other natural resources.
 - **User-Friendly Interface**: Intuitive design for seamless navigation.
 
 ---
@@ -19,7 +19,6 @@ Invest Insight is a comprehensive financial planning application designed to hel
 - **Backend**: Django
 - **Frontend**: HTML, CSS, JavaScript
 - **Database**: SQLite
-- **Other Tools**: Bootstrap for styling
 
 ---
 
@@ -27,7 +26,7 @@ Invest Insight is a comprehensive financial planning application designed to hel
 
 1. Clone the repository:
    ```bash
-   git clone https://github.com/your-repo/invest-insight.git
+   git clone https://github.com/Surventurer/invest_insight.git
    cd invest-insight
    ```
 
@@ -67,10 +66,13 @@ manage.py               # Django management script
 ## Screenshots 📸
 
 ### Home Page
-![Home Page](static/logo.png)
+![Home Page](static/home.png)
 
 ### SIP Calculator
 ![SIP Calculator](static/sip_calculator.png)
+
+### RD/FD Calculator
+![RD/FD Calculator](static/rd_fd_calculator.png)
 
 ---
 
@@ -95,7 +97,7 @@ This project is licensed under the MIT License. See the [LICENSE](LICENSE) file 
 ## Contact 📧
 
 For any inquiries or feedback, please contact:
-- **Email**: support@investinsight.com
+- **Email**: abhinavrajpati3344@gmail.com
 - **Website**: [Invest Insight](http://investinsight.com)
 
 ---
