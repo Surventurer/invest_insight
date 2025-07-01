@@ -83,19 +83,42 @@ WSGI_APPLICATION = 'investing.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/4.2/ref/settings/#databases
 
-# Use PostgreSQL in production (Render), SQLite for local development
-if os.environ.get('RENDER'):
+# Use PostgreSQL in production (when DATABASE_URL is provided), SQLite for local development
+DATABASE_URL = os.environ.get('DATABASE_URL')
+
+if DATABASE_URL:
+    # Production database (Render provides DATABASE_URL)
+    try:
+        import dj_database_url
+        DATABASES = {
+            'default': dj_database_url.parse(DATABASE_URL)
+        }
+    except ImportError:
+        # Fallback if dj_database_url is not installed
+        DATABASES = {
+            'default': {
+                'ENGINE': 'django.db.backends.postgresql',
+                'NAME': os.environ.get('DATABASE_NAME'),
+                'USER': os.environ.get('DATABASE_USER'),
+                'PASSWORD': os.environ.get('DATABASE_PASSWORD'),
+                'HOST': os.environ.get('DATABASE_HOST', 'localhost'),
+                'PORT': os.environ.get('DATABASE_PORT', '5432'),
+            }
+        }
+elif os.environ.get('DATABASE_NAME'):
+    # Alternative PostgreSQL configuration
     DATABASES = {
         'default': {
             'ENGINE': 'django.db.backends.postgresql',
             'NAME': os.environ.get('DATABASE_NAME'),
             'USER': os.environ.get('DATABASE_USER'),
             'PASSWORD': os.environ.get('DATABASE_PASSWORD'),
-            'HOST': os.environ.get('DATABASE_HOST'),
+            'HOST': os.environ.get('DATABASE_HOST', 'localhost'),
             'PORT': os.environ.get('DATABASE_PORT', '5432'),
         }
     }
 else:
+    # Local development database (SQLite)
     DATABASES = {
         'default': {
             'ENGINE': 'django.db.backends.sqlite3',
