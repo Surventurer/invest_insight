@@ -66,13 +66,13 @@ manage.py               # Django management script
 ## Screenshots 📸
 
 ### Home Page
-![Home Page](./finance_app/static/home.png)
+![Home Page](./website_image/home.png)
 
 ### SIP Calculator
-![SIP Calculator](./finance_app/static/sip_calculator.png)
+![SIP Calculator](./website_image/sip_calculator.png)
 
 ### RD/FD Calculator
-![RD/FD Calculator](./finance_app/static/rd_fd_calculator.png)
+![RD/FD Calculator](./website_image/rd_fd_calculator.png)
 
 ---
 
