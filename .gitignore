@@ -1,5 +1,8 @@
 # Python
 __pycache__/
+finance_app/__pycache__
+invest_insight/finance_app/migrations/__pycache__
+investing/__pycache__
 *.py[cod]
 *$py.class
 *.so
