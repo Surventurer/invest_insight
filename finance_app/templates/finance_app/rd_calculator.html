@@ -1,0 +1,28 @@
+{% extends 'finance_app/base.html' %}
+
+{% block content %}
+<h1>Recurring Deposit (RD) Calculator</h1>
+<p>
+    Calculate the maturity amount for your Recurring Deposit investment.
+</p>
+
+<h2>RD Calculator</h2>
+<form method="POST">
+    {% csrf_token %}
+    <label>Monthly Investment (₹):</label>
+    <input type="number" name="monthly_investment" required><br><br>
+
+    <label>Annual Interest Rate (%):</label>
+    <input type="number" name="annual_interest_rate" step="0.01" required><br><br>
+
+    <label>Tenure (Years):</label>
+    <input type="number" name="tenure" required><br><br>
+
+    <button type="submit" name="rd_submit">Calculate RD</button>
+</form>
+
+{% if rd_result %}
+<h3>Results:</h3>
+<p><strong>Maturity Value:</strong> ₹{{ rd_result }}</p>
+{% endif %}
+{% endblock %}

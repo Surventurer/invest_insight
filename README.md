@@ -37,7 +37,7 @@ Invest Insight is a comprehensive financial planning application designed to hel
 
 3. Run the development server:
    ```bash
-   python manage.py runserver
+   uv run manage.py runserver
    ```
 
 4. Open your browser and navigate to:
